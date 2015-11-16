@@ -45,34 +45,26 @@ function is_coding_assignmentChanged(){
 <%= hidden_field_tag('assignment_form[assignment][instructor_id]', @assignment_form.assignment.instructor_id) %>
 <%= hidden_field_tag('assignment_form[assignment][course_id]', @assignment_form.assignment.course_id) %>
 <%= hidden_field_tag('assignment_form[assignment][id]', @assignment_form.assignment.id) %>
+
 <tr>
-<td style='padding:5px'><%= label_tag('assignment_form[assignment][name]', 'Email:') %></td>
+<td style='padding:5px'><%= label_tag('assignment_form[assignment][name]', 'Support Email:') %></td>
 <td style='padding:5px'><%= text_field_tag('assignment_form[assignment][name]', @assignment_form.assignment.name, :style => 'width:300px') %></td>
 
 </tr>
-<tr>
-<td style='padding:5px'><%= label_tag('assignment_form[assignment][name]', 'Title:') %></td>
-<td style='padding:5px'><%= text_field_tag('assignment_form[assignment][name]', @assignment_form.assignment.name, :style => 'width:300px') %></td>
-
-</tr>
-<tr>
-<td style='padding:5px'><%= label_tag('assignment_form[assignment][name]', 'Description:') %></td>
-<td style='padding:5px'><%= text_area_tag('assignment_form[assignment][name]', @assignment_form.assignment.name, :style => 'width:300px') %></td>
-
-</tr>
-
 
 
 <tr>
-<td style='padding:5px'><%= label_tag('assignment_form[assignment][directory_path]', 'Attach a file:') %></td></tr>
+<td style='padding:5px'><%= label_tag('assignment_form[assignment][directory_path]', 'File Extensions allowed:') %></td></tr>
 <tr>
-<td style='padding:5px'>
-<input type="submit" name="commit"  class="btn btn-default" value = "Choose File"> No file chosen.
+<td style='padding:5px'><%= text_field_tag('assignment_form[assignment][directory_path]', @assignment_form.assignment.directory_path, :style => 'width:150px') %> 
 </td>
-</tr>
-<tr>
 <td style='padding:5px'>
-<input type="submit" name="commit"  class="btn btn-default" value ="Upload">
+<input type="submit" name="commit" value="Add new File Extension">
+</td>
+<td style='padding:5px'><%= text_field_tag('assignment_form[assignment][directory_path]', @assignment_form.assignment.directory_path, :style => 'width:150px') %> 
+</td>
+<td style='padding:5px'>
+<input type="submit" name="commit" value=" Add Status">
 </td>
 
 </tr>
@@ -85,9 +77,30 @@ function is_coding_assignmentChanged(){
 
 
 
+</td>
+</tr>
+<tr>
+<td style='padding:5px'><%= label_tag('assignment_form[assignment][spec_location]', 'Maximum File Size Allowed(in Mb): ') %></td>
+<td style='padding:5px'><%= text_field_tag('assignment_form[assignment][spec_location]', @assignment_form.assignment.spec_location, :style => 'width:100px') %>
+<td style='padding:5px'><%= label_tag('assignment_form[assignment][spec_location]', 'Maximum no. of files allowed: ') %></td>
+<td style='padding:5px'><%= text_field_tag('assignment_form[assignment][spec_location]', @assignment_form.assignment.spec_location, :style => 'width:100px') %></td>
+</tr>
+<tr>
+<td style='padding:5px'><%= label_tag('assignment_form[assignment][spec_location]', 'Retries before waiting cycle starts: ') %></td>
+<td style='padding:5px'><%= text_field_tag('assignment_form[assignment][spec_location]', @assignment_form.assignment.spec_location, :style => 'width:100px') %> <img src="/assets/info.png" title='- DO NOT change this filed for an on-going assignment. This may cause lost of student submitted file.'>
+</td>
+<td style='padding:5px'><%= label_tag('assignment_form[assignment][spec_location]', 'Duration between each wait:  ') %></td>
+<td style='padding:5px'><%= text_field_tag('assignment_form[assignment][spec_location]', @assignment_form.assignment.spec_location, :style => 'width:100px') %>
+</td>
+</tr>
+<tr>
+<td style='padding:5px'><%= label_tag('assignment_form[assignment][spec_location]', 'Multiplier after each wait:  ') %></td>
+<td style='padding:5px'><%= text_field_tag('assignment_form[assignment][spec_location]', @assignment_form.assignment.spec_location, :style => 'width:100px') %> <img src="/assets/info.png" title='- DO NOT change this filed for an on-going assignment. This may cause lost of student submitted file.'>
+</td>
+</tr>
 
 <tr>
-<td><input type="submit" name="commit" value="Submit"></td>
+<td><input type="submit" name="commit" value="Submit" class="btn btn-default"></td>
 </tr>
 </table>
 

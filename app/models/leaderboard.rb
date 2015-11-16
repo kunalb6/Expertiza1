@@ -69,8 +69,9 @@ class Leaderboard < ActiveRecord::Base
     revieweeList.concat(teamList.pluck(:id)).uniq!
 
     # Get scores from ScoreCache for computed reviewee list.
-    scores = ScoreCache.where("reviewee_id IN (?) and object_type IN (?)", revieweeList, questionnaireResponseTypeHash.keys)
-
+    scores = ResponseMap.where("reviewee_id IN (?) and type IN (?)", revieweeList, questionnaireResponseTypeHash.keys)
+    #for assignment in assignmentList
+    #review_report[assignment.id] = assignment.compute_reviews_hash
     for scoreEntry in scores
       revieweeUserIdList = Array.new
       if(assignmentMap["team"].has_key?(scoreEntry.reviewee_id))
@@ -78,15 +79,18 @@ class Leaderboard < ActiveRecord::Base
         teamUserIds = TeamsUser.where(:team_id => scoreEntry.reviewee_id).pluck(:user_id)
         revieweeUserIdList.concat(teamUserIds)
         courseId = assignmentMap["team"][scoreEntry.reviewee_id].try(:course_id).to_i
+        review_report = assignmentMap["team"][scoreEntry.reviewee_id].compute_reviews_hash
       else
         # Reviewee is an individual participant.
         revieweeUserIdList << assignmentMap["participant"][scoreEntry.reviewee_id]["self"].try(:user_id)
         courseId = assignmentMap["participant"][scoreEntry.reviewee_id]["assignment"].try(:course_id).to_i
+        review_report = assignmentMap["participant"][scoreEntry.reviewee_id]["assignment"].compute_reviews_hash
       end
 
-      questionnaireType = questionnaireResponseTypeHash[scoreEntry.object_type]
+      questionnaireType = questionnaireResponseTypeHash[scoreEntry.type]
+      scoreEntry_score = review_report[scoreEntry.reviewer_id][scoreEntry.reviewee_id]
 
-      addScoreToResultantHash(qTypeHash, questionnaireType, courseId, revieweeUserIdList, scoreEntry.score)
+      addScoreToResultantHash(qTypeHash, questionnaireType, courseId, revieweeUserIdList, scoreEntry_score)
     end
 
     qTypeHash

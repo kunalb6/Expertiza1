@@ -1,3 +1,4 @@
+require 'tracer'
 class GradesController < ApplicationController
   helper :file
   helper :submitted_content
@@ -54,6 +55,7 @@ class GradesController < ApplicationController
   end
 
   def view_my_scores
+    Tracer.on
     @participant = AssignmentParticipant.find(params[:id])
     @team_id = TeamsUser.team_id(@participant.parent_id, @participant.user_id)
     return if redirect_when_disallowed
@@ -62,6 +64,7 @@ class GradesController < ApplicationController
     questionnaires = @assignment.questionnaires
     questionnaires.each do |questionnaire|
       round = AssignmentQuestionnaire.where(assignment_id: @assignment.id, questionnaire_id:questionnaire.id).first.used_in_round
+
       if(round!=nil)
         questionnaire_symbol = (questionnaire.symbol.to_s+round.to_s).to_sym
       else
@@ -76,6 +79,7 @@ class GradesController < ApplicationController
     @topic_id = SignedUpTeam.topic_id(@participant.assignment.id, @participant.user_id)
     @stage = @participant.assignment.get_current_stage(@topic_id)
     calculate_all_penalties(@assignment.id)
+    Tracer.off
   end
 
   def edit

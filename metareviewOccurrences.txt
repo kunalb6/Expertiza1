@@ -1,0 +1,32 @@
+app/controllers/review_mapping_controller.rb:      if MetareviewResponseMap.where( ['reviewed_object_id = ? and reviewer_id = ?',mapping.map_id,reviewer.id]).first != nil
+app/controllers/review_mapping_controller.rb:      MetareviewResponseMap.create(:reviewed_object_id => mapping.map_id,
+app/controllers/review_mapping_controller.rb:    mmappings = MetareviewResponseMap.where(reviewed_object_id: mapping.map_id)
+app/controllers/review_mapping_controller.rb:    mapping = MetareviewResponseMap.find(params[:id])
+app/controllers/review_mapping_controller.rb:    mapping = MetareviewResponseMap.find(params[:id])
+app/controllers/review_mapping_controller.rb:          metareview_mappings = MetareviewResponseMap.where(reviewed_object_id: review_map.map_id)
+app/controllers/response_controller.rb:    elsif @map.type="MetareviewResponseMap" && new_response
+app/controllers/student_review_controller.rb:    @metareview_mappings = MetareviewResponseMap.where(reviewer_id: @participant.id)
+app/controllers/assessment360_controller.rb:        @REVIEW_TYPES = ["ReviewResponseMap", "FeedbackResponseMap", "TeammateReviewResponseMap", "MetareviewResponseMap"]
+app/controllers/student_task_controller.rb:    @review_of_review_mappings = MetareviewResponseMap.where(reviewer_id: @participant.id)
+app/helpers/penalty_helper.rb:      meta_review_mappings = MetareviewResponseMap.where(reviewer_id: @participant.id)
+app/mailers/delayed_mailer.rb:      meta_reviewer_tuples = ResponseMap.where( ['reviewed_object_id = ? AND type = "MetareviewResponseMap"', reviewer.id])
+app/models/scheduled_task.rb:      meta_reviewer_tuples = ResponseMap.where( ['reviewed_object_id = ? AND type = "MetareviewResponseMap"', reviewer.id])
+app/models/review_response_map.rb:    maps = MetareviewResponseMap.where(reviewed_object_id: self.id)
+app/models/review_response_map.rb:      metareview_response_maps = MetareviewResponseMap.where(reviewed_object_id:response.id)
+app/models/leaderboard.rb:                                     "MetareviewResponseMap" => "MetareviewQuestionnaire",
+app/models/response_map.rb:    MetareviewResponseMap.where(reviewee_id: self.reviewer.id, reviewer_id: metareviewer.id, reviewed_object_id: self.id).count() > 0
+app/models/response_map.rb:    MetareviewResponseMap.create(:reviewed_object_id => self.id,
+app/models/metareview_response_map.rb:class MetareviewResponseMap < ResponseMap
+app/models/metareview_response_map.rb:          existing_mappings = MetareviewResponseMap.where(reviewee_id: reviewee.id, reviewer_id: reviewer.id, reviewed_object_id: reviewmapping.map_id)
+app/models/metareview_response_map.rb:            MetareviewResponseMap.create(:reviewer_id => reviewer.id, :reviewee_id => reviewee.id, :reviewed_object_id => reviewmapping.map_id )
+app/models/assignment_participant.rb:    MetareviewResponseMap.get_assessments_for(self)
+app/models/assignment.rb:      m_map = MetareviewResponseMap.find_by_reviewed_object_id(map.id)
+app/models/response.rb:  has_many :metareview_response_maps, :class_name => 'MetareviewResponseMap', :foreign_key => 'reviewed_object_id', dependent: :destroy
+app/models/response.rb:    if response_map.type == "MetareviewResponseMap"
+app/views/review_mapping/list_sortable.html.erb:  :model => 'MetareviewresponseMap',
+app/views/review_mapping/_list_review_mappings.html.erb:              <% rmappings = MetareviewResponseMap.where(reviewed_object_id: map.map_id)
+app/views/review_mapping/_list_review_mappings.html.erb:    :model => 'MetareviewResponseMap',
+app/views/review_mapping/_list_review_mappings.html.erb:  :model=> 'MetareviewResponseMap',
+app/views/student_review/_responses.html.erb:      <% if map.type.to_s == "MetareviewResponseMap" %>
+app/views/student_review/_responses.html.erb:                            <% if map.type.to_s == "MetareviewResponseMap" %>
+app/views/student_review/_responses.html.erb:                        <% if map.type.to_s != "MetareviewResponseMap" %>

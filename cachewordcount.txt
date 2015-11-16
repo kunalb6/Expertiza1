@@ -1,0 +1,49 @@
+app/controllers/content_pages_controller.rb:      Role.rebuild_cache
+app/controllers/content_pages_controller.rb:      Role.rebuild_cache
+app/controllers/content_pages_controller.rb:      Role.rebuild_cache
+app/controllers/permissions_controller.rb:      Role.rebuild_cache
+app/controllers/permissions_controller.rb:      Role.rebuild_cache
+app/controllers/permissions_controller.rb:    Role.rebuild_cache
+app/controllers/site_controllers_controller.rb:      Role.rebuild_cache
+app/controllers/site_controllers_controller.rb:      Role.rebuild_cache
+app/controllers/site_controllers_controller.rb:    Role.rebuild_cache
+app/controllers/roles_controller.rb:      Role.rebuild_cache
+app/controllers/roles_controller.rb:      Role.rebuild_cache
+app/controllers/review_mapping_controller.rb:  # This method should be re-written since the score cache is no longer working.
+app/controllers/controller_actions_controller.rb:      Role.rebuild_cache
+app/controllers/controller_actions_controller.rb:      Role.rebuild_cache
+app/controllers/controller_actions_controller.rb:    Role.rebuild_cache
+app/controllers/menu_items_controller.rb:      Role.rebuild_cache
+app/controllers/menu_items_controller.rb:    Role.rebuild_cache
+app/controllers/menu_items_controller.rb:    Role.rebuild_cache
+app/controllers/menu_items_controller.rb:    Role.rebuild_cache
+app/controllers/menu_items_controller.rb:  Role.rebuild_cache
+app/controllers/auth_controller.rb:        if !role.cache || !role.cache.try(:has_key?, :credentials)
+app/controllers/auth_controller.rb:          Role.rebuild_cache
+app/controllers/auth_controller.rb:        session[:credentials] = role.cache[:credentials]
+app/controllers/auth_controller.rb:        session[:menu] = role.cache[:menu]
+app/controllers/auth_controller.rb:      if not role.cache or not role.cache.has_key?(:credentials)
+app/controllers/auth_controller.rb:        Role.rebuild_cache
+app/controllers/auth_controller.rb:      session[:credentials] = role.cache[:credentials]
+app/controllers/auth_controller.rb:      session[:menu] = role.cache[:menu]
+app/assets/javascripts/application.js:  // Regexes and supporting functions are cached through closure
+app/assets/javascripts/ajaxtabs.js:ddajaxtabssettings.bustcachevar=1  //bust potential caching of external pages after initial request? (1=yes, 0=no)
+app/assets/javascripts/ajaxtabs.js:	var bustcacheparameter=""
+app/assets/javascripts/ajaxtabs.js:	if (ddajaxtabssettings.bustcachevar) //if bust caching of external page
+app/assets/javascripts/ajaxtabs.js:		bustcacheparameter=(ajaxfriendlyurl.indexOf("?")!=-1)? "&"+new Date().getTime() : "?"+new Date().getTime()
+app/assets/javascripts/ajaxtabs.js:	page_request.open('GET', ajaxfriendlyurl+bustcacheparameter, true)
+app/models/leaderboard.rb:    # Get scores from ScoreCache for computed reviewee list.
+app/models/leaderboard.rb:    scores = ScoreCache.where("reviewee_id IN (?) and object_type IN (?)", revieweeList, questionnaireResponseTypeHash.keys)
+app/models/role.rb:  serialize :cache
+app/models/role.rb:  def Role.rebuild_cache
+app/models/role.rb:      role.cache = nil
+app/models/role.rb:      role.cache = Hash.new
+app/models/role.rb:    self.cache[:credentials] = Credentials.new(self.id)
+app/models/role.rb:    self.cache[:menu] = menu
+app/models/content_page.rb:    self.content_cache = markup_content
+app/models/content_page.rb:    if content_cache && content_cache.length > 0
+app/models/content_page.rb:      content_cache.html_safe
+app/models/menu.rb:      if role.cache[:credentials].permission_ids.size > 0
+app/models/menu.rb:        items = MenuItem.items_for_permissions(role.cache[:credentials].permission_ids)
+app/views/review_mapping/_participantscore.html.erb:<%@sc = ScoreCache.where(["reviewee_id = ? and object_type = ?",@team_id, @qid]).first %>
+app/views/popup/participants_popup.html.erb:          @sc = ScoreCache.where(["reviewee_id = ?  and object_type = ?",@team_id, @qid  ]).first %>

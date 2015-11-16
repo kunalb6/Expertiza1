@@ -1,0 +1,4 @@
+app/controllers/tree_display_controller.rb:  def goto_author_feedbacks
+app/views/grades/_participant.html.erb:    <TD COLSPAN="10"><%= render :partial=>'grades/author_feedbacks', :locals => {:prefix => 'user', :participant => participant, :rscore => pscore[:feedback]} %></TD>
+app/views/grades/_author.html.erb:<%= render :partial=>'grades/author_feedbacks', :locals => {:prefix => 'user', :participant => participant, :rscore => pscore[:feedback]} %>
+app/views/grades/_author_feedback_tab.html.erb:  <TD COLSPAN="9"><%= render :partial=>'grades/author_feedbacks', :locals => {:prefix => 'user', :participant => participant, :rscore => pscore[:feedback]} %></TD>
